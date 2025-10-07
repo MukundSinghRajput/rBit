@@ -18,4 +18,6 @@ pub enum AppError {
         url: Url,
         status: reqwest::StatusCode,
     },
+    #[error("Torrent parsing error: {0}")]
+    Torrent(#[from] lava_torrent::LavaTorrentError),
 }
