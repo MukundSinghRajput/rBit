@@ -1,6 +1,8 @@
 use clap::Parser;
 
 mod error;
+mod run;
+mod utils;
 
 /// A BitTorrent client written in rust.
 #[derive(Parser, Debug)]
@@ -19,6 +21,15 @@ struct Args {
 async fn main() {
     let args = Args::parse();
 
-    println!("Torrent file {}", args.source);
-    println!("Output directory: {}", args.output)
+    match run::run(args).await {
+        Ok(path) => {
+            println!("Sucessfully obtained torrent file.");
+            println!("Read to process torrent from: {}", path.display());
+            todo!("Implement later")
+        }
+        Err(e) => {
+            eprintln!("Error: {}", e);
+            std::process::exit(1)
+        }
+    }
 }
