@@ -1,5 +1,7 @@
 use clap::Parser;
 
+mod error;
+
 /// A BitTorrent client written in rust.
 #[derive(Parser, Debug)]
 #[command(author = "Mukund", version, about, long_about = None)]
